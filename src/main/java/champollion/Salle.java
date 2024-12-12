@@ -7,6 +7,6 @@ import lombok.ToString;
 @Setter// Génère les setters pour tous les champs
 @ToString // Génère la méthode toString()
 public class Salle {
-
-
+    String intitule;
+    int capacite;
 }
