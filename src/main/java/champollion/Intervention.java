@@ -8,13 +8,26 @@ import java.util.Date;
 @Setter// Génère les setters pour tous les champs
 @ToString // Génère la méthode toString()
 public class Intervention {
-    Date debut;
-    int duree;
-    boolean annulee = false;
-    int heureDebut;
+    private Date debut;
+    private int duree;
+    private boolean annulee = false;
+    private int heureDebut;
 
     TypeIntervention type;
     Enseignant enseignant;
     UE ue;
     Salle salle;
+
+    public int heurePrevueUe() {
+        if (this.type == TypeIntervention.CM) {
+            return this.ue.getHeuresCm();
+        } else if (this.type == TypeIntervention.TD) {
+            return this.ue.getHeuresTd();
+        } else if (this.type == TypeIntervention.TP) {
+            return this.ue.getHeuresTp();
+        }
+        else {
+            throw new IllegalArgumentException("Unknow TypeIntervention");
+        }
+    }
 }

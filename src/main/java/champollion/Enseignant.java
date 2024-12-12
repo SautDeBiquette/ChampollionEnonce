@@ -96,16 +96,32 @@ public class Enseignant extends  Personne {
         }
         else{
             for (Intervention i : interventions.values()) {
-                total += i.duree;
+                total += i.getDuree();
             }
             return total;
         }
     }
 
-    public void ajouteIntervention(Intervention intervention){
-        if (this.heuresPrevues()< this.interventionsPrevues()+intervention.duree) {
-            throw new IllegalArgumentException("Le nombre d'heure d'intervention excède le nombre d'heures prévues");
+    public int interventionPrevuesPourUE(UE ue) {
+        // TODO: Implémenter cette méthode
+        float total = 0;
+        if (interventions.containsKey(ue)) {
+            Intervention i = interventions.get(ue);
+            total += (float) i.getCm() + i.getTd() + i.getVolumeTp());
+//Dans l'idée, je récupère dans une lsite pair toutes les interventions associés à une ue puis je vérifie que le volume de cours n'est pas depassé
         }
+        else{
+        }
+        return Math.round(total);
+    }
+    public void ajoutIntervention(Intervention intervention){
+        if (this.heuresPrevues() < this.interventionsPrevues()+intervention.getDuree()) {
+            throw new IllegalArgumentException("Le nombre d'heure d'intervention excède le nombre d'heures prévues pour l'enseignant");
+        }
+        else if(intervention.heurePrevueUe() < intervention.getDuree()){
+            throw new IllegalArgumentException("Le nombre d'heure d'intervention excède le nombre d'heures prévues dans l'UE");
+        }
+
         else {
             interventions.put(intervention.ue,intervention);
         }
