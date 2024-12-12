@@ -2,14 +2,13 @@ package champollion;
 
 import lombok.*;
 
-@Getter // Génère les getters pour tous les champs
+@Getter// Génère les getters pour tous les champs
+@Setter// Génère les setters pour tous les champs
 @ToString // Génère la méthode toString()
 @RequiredArgsConstructor // Génère un constructeur avec tous les champs "final" ou annotés avec @NonNull
 public class ServicePrevu {
 	// TODO : implémenter cette classe
-    @Getter
-    @Setter
-    @NonNull
+
     int volumeCm = 0;
     int volumeTd = 0;
     int volumeTp = 0;

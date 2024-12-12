@@ -81,4 +81,8 @@ public class Enseignant extends  Personne {
     }
     }
 
+    public void ajouteIntervention(){
+
+    }
+
 }
