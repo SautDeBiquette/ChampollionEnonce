@@ -12,4 +12,9 @@ public class Intervention {
     int duree;
     boolean annulee = false;
     int heureDebut;
+
+    TypeIntervention type;
+    Enseignant enseignant;
+    UE ue;
+    Salle salle;
 }

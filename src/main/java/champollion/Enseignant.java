@@ -11,6 +11,8 @@ import java.util.HashMap;
 public class Enseignant extends  Personne {
 
     HashMap<UE,ServicePrevu> services = new  HashMap<>();
+    HashMap<UE,Intervention> interventions = new  HashMap<>();
+
     // TODO : rajouter les autres méthodes présentes dans le diagramme UML
 
     public Enseignant(String nom, String email) {
@@ -37,6 +39,11 @@ public class Enseignant extends  Personne {
         }
         return total;
         }
+    }
+
+    //Une méthode propre pour renvoyer si un enseignant est en sous service ou non
+    public boolean sousServices(){
+        return this.heuresPrevues() < 192;
     }
 
     /**
@@ -81,8 +88,27 @@ public class Enseignant extends  Personne {
     }
     }
 
-    public void ajouteIntervention(){
+    public int interventionsPrevues() {
+        // TODO: Implémenter cette méthode
+        int total = 0;
+        if (interventions == null){
+            return total;
+        }
+        else{
+            for (Intervention i : interventions.values()) {
+                total += i.duree;
+            }
+            return total;
+        }
+    }
 
+    public void ajouteIntervention(Intervention intervention){
+        if (this.heuresPrevues()< this.interventionsPrevues()+intervention.duree) {
+            throw new IllegalArgumentException("Le nombre d'heure d'intervention excède le nombre d'heures prévues");
+        }
+        else {
+            interventions.put(intervention.ue,intervention);
+        }
     }
 
 }
